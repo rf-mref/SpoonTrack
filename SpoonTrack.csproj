@@ -1,0 +1,91 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net9.0-android</TargetFrameworks>
+    
+    <OutputType>Exe</OutputType>
+    <RootNamespace>SpoonTrack</RootNamespace>
+    <UseMaui>true</UseMaui>
+    <SingleProject>true</SingleProject>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <!-- Display name -->
+    <ApplicationTitle>SpoonTrack</ApplicationTitle>
+
+    <!-- App Identifier -->
+    <ApplicationId>com.monteiro.spoontrack</ApplicationId>
+
+    <!-- Versions -->
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <ApplicationVersion>1</ApplicationVersion>
+
+    <!-- Android -->
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">24.0</SupportedOSPlatformVersion>
+    <TargetPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">35</TargetPlatformVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- App Icon -->
+    <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#1E1E1E" />
+
+    <!-- Splash Screen -->
+    <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#1E1E1E" BaseSize="128,128" />
+
+    <!-- Images -->
+    <MauiImage Include="Resources\Images\*" />
+
+    <!-- Fonts -->
+    <MauiFont Include="Resources\Fonts\*" />
+
+    <!-- Raw Assets -->
+    <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- NuGet Packages .NET 9 -->
+    <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.0" />
+
+    <!-- Syncfusion Community (GRATUITO) -->
+    <PackageReference Include="Syncfusion.Maui.Charts" Version="31.1.22" />
+    <PackageReference Include="Syncfusion.Maui.Core" Version="31.1.22" />
+    <PackageReference Include="Syncfusion.Maui.Toolkit" Version="1.0.7" />
+    <PackageReference Include="Syncfusion.Maui.DataGrid" Version="31.1.22" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Resources -->
+    <EmbeddedResource Update="Resources\Strings\AppResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Strings\AppResources.en.resx">
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Strings\AppResources.fr.resx">
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Compile -->
+    <Compile Update="Resources\Strings\AppResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <MauiXaml Update="Views\HelpPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+  </ItemGroup>
+
+</Project>

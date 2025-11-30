@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  
+  <data name="AppName" xml:space="preserve">
+    <value>SpoonTrack</value>
+  </data>
+  
+  <data name="Energy" xml:space="preserve">
+    <value>Energy</value>
+  </data>
+  
+  <data name="Spoons" xml:space="preserve">
+    <value>Spoons</value>
+  </data>
+  
+  <data name="SleepQuality" xml:space="preserve">
+    <value>Sleep Quality</value>
+  </data>
+  
+  <data name="Notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  
+  <data name="History" xml:space="preserve">
+    <value>History</value>
+  </data>
+  
+  <data name="Symptoms" xml:space="preserve">
+    <value>Symptoms</value>
+  </data>
+  
+  <data name="Activities" xml:space="preserve">
+    <value>Activities</value>
+  </data>
+  
+  <data name="Triggers" xml:space="preserve">
+    <value>Triggers</value>
+  </data>
+  
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  
+  <data name="Backup" xml:space="preserve">
+    <value>Backup</value>
+  </data>
+  
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  
+  <data name="QuickLog" xml:space="preserve">
+    <value>Quick Log</value>
+  </data>
+  
+  <data name="TodaySpoons" xml:space="preserve">
+    <value>Today's Spoons</value>
+  </data>
+  
+  <data name="Fatigue" xml:space="preserve">
+    <value>Fatigue</value>
+  </data>
+  
+  <data name="Pain" xml:space="preserve">
+    <value>Pain</value>
+  </data>
+  
+  <data name="BrainFog" xml:space="preserve">
+    <value>Brain Fog</value>
+  </data>
+  
+  <data name="Dizziness" xml:space="preserve">
+    <value>Dizziness</value>
+  </data>
+  
+  <data name="Nausea" xml:space="preserve">
+    <value>Nausea</value>
+  </data>
+  
+  <data name="PEM" xml:space="preserve">
+    <value>Post-Exertional Malaise</value>
+  </data>
+  
+  <data name="Headache" xml:space="preserve">
+    <value>Headache</value>
+  </data>
+  
+  <data name="AverageLast7Days" xml:space="preserve">
+    <value>7-Day Average</value>
+  </data>
+  
+  <data name="FilterBySymptom" xml:space="preserve">
+    <value>Filter by Symptom</value>
+  </data>
+  
+  <data name="NoEntriesFound" xml:space="preserve">
+    <value>No entries found</value>
+  </data>
+  
+</root>

@@ -1,0 +1,67 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SpoonTrack"
+             x:Class="SpoonTrack.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            
+            <!-- Colors - Dark theme por default -->
+            <Color x:Key="Primary">#4CAF50</Color>
+            <Color x:Key="Secondary">#2196F3</Color>
+            <Color x:Key="Accent">#FFC107</Color>
+            <Color x:Key="Error">#F44336</Color>
+            <Color x:Key="Warning">#FF5722</Color>
+            
+            <Color x:Key="BackgroundDark">#1E1E1E</Color>
+            <Color x:Key="SurfaceDark">#2A2A2A</Color>
+            <Color x:Key="BorderDark">#3A3A3A</Color>
+            
+            <Color x:Key="TextPrimary">#E0E0E0</Color>
+            <Color x:Key="TextSecondary">#CCCCCC</Color>
+            <Color x:Key="TextDisabled">#888888</Color>
+
+            <!-- Converters -->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <!-- String to Boolean Converter -->
+                    <local:StringNotNullOrEmptyConverter x:Key="StringNotNullOrEmptyConverter" />
+                    <local:IsNegativeConverter x:Key="IsNegativeConverter" />
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Styles -->
+            <Style TargetType="Page" ApplyToDerivedTypes="True">
+                <Setter Property="BackgroundColor" Value="{StaticResource BackgroundDark}" />
+            </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+                <Setter Property="FontSize" Value="16" />
+            </Style>
+
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="8" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Padding" Value="15,10" />
+            </Style>
+
+            <Style TargetType="Entry">
+                <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource SurfaceDark}" />
+                <Setter Property="PlaceholderColor" Value="{StaticResource TextDisabled}" />
+                <Setter Property="FontSize" Value="16" />
+            </Style>
+
+            <Style TargetType="Editor">
+                <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource SurfaceDark}" />
+                <Setter Property="PlaceholderColor" Value="{StaticResource TextDisabled}" />
+                <Setter Property="FontSize" Value="16" />
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

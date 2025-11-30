@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:SpoonTrack.ViewModels"
+             x:Class="SpoonTrack.Views.ChartsPage"
+             Title="Charts"
+             BackgroundColor="#1E1E1E">
+
+    <ContentPage.BindingContext>
+        <vm:ChartsViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="25">
+
+            <Label Text="Energy Last 7 Days"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="#E0E0E0" />
+
+            <!-- Lista simples com barras visuais -->
+            <CollectionView ItemsSource="{Binding EnergyData}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="#2A2A2A" 
+                               BorderColor="#3A3A3A"
+                               CornerRadius="10"
+                               Padding="15"
+                               Margin="0,5">
+                            <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="80,*,50">
+
+                                <!-- Data -->
+                                <Label Grid.Row="0" Grid.Column="0"
+                                       Text="{Binding Date, StringFormat='{0:dd/MM}'}"
+                                       FontSize="16"
+                                       TextColor="#E0E0E0"
+                                       VerticalOptions="Center" />
+
+                                <!-- Barra visual -->
+                                <Frame Grid.Row="0" Grid.Column="1"
+                                       BackgroundColor="#4CAF50"
+                                       CornerRadius="5"
+                                       Padding="0"
+                                       HeightRequest="30"
+                                       WidthRequest="{Binding BarWidth}"
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="Center" />
+
+                                <!-- Valor -->
+                                <Label Grid.Row="0" Grid.Column="2"
+                                       Text="{Binding Value, StringFormat='{0}/10'}"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       TextColor="#4CAF50"
+                                       HorizontalOptions="End"
+                                       VerticalOptions="Center" />
+
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label Text="💡 Dica: Tenta manter energia acima de 5 spoons"
+                   FontSize="16"
+                   TextColor="#FFC107"
+                   HorizontalOptions="Center"
+                   Margin="0,20,0,0" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

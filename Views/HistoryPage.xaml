@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:SpoonTrack.ViewModels"
+             x:Class="SpoonTrack.Views.HistoryPage"
+             Title="History"
+             BackgroundColor="#1E1E1E">
+
+    <ContentPage.BindingContext>
+        <vm:HistoryViewModel x:Name="ViewModel" />
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="20">
+        
+        <!-- Filter -->
+        <Frame Grid.Row="0" 
+               BackgroundColor="#2A2A2A" 
+               BorderColor="#3A3A3A"
+               CornerRadius="10"
+               Padding="15"
+               Margin="0,0,0,15">
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Filter by Symptom"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       TextColor="#E0E0E0" />
+                
+                <Entry Placeholder="Type symptom name..."
+                       PlaceholderColor="#888888"
+                       Text="{Binding FilterSymptom}"
+                       TextColor="#E0E0E0"
+                       BackgroundColor="#1E1E1E"
+                       FontSize="16" />
+            </VerticalStackLayout>
+        </Frame>
+
+        <!-- Entries List -->
+        <CollectionView Grid.Row="1" 
+                       ItemsSource="{Binding Entries}"
+                       SelectedItem="{Binding SelectedEntry}"
+                       SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BackgroundColor="#2A2A2A" 
+                           BorderColor="#3A3A3A"
+                           CornerRadius="10"
+                           Padding="15"
+                           Margin="0,5">
+                        <VerticalStackLayout Spacing="8">
+                            
+                            <HorizontalStackLayout Spacing="15">
+                                <Label Text="{Binding Date, StringFormat='{0:dd/MM/yyyy}'}"
+                                       FontSize="20"
+                                       FontAttributes="Bold"
+                                       TextColor="#4CAF50"
+                                       VerticalOptions="Center" />
+                                
+                                <Label Text="{Binding EnergyLevel, StringFormat='⚡ {0}/10'}"
+                                       FontSize="18"
+                                       TextColor="#FFC107"
+                                       VerticalOptions="Center" />
+                                
+                                <Label Text="{Binding SleepQuality, StringFormat='😴 {0}/10'}"
+                                       FontSize="18"
+                                       TextColor="#2196F3"
+                                       VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+
+                            <Label Text="{Binding Notes}"
+                                   FontSize="16"
+                                   TextColor="#CCCCCC"
+                                   LineBreakMode="TailTruncation"
+                                   MaxLines="2"
+                                   IsVisible="{Binding Notes, Converter={StaticResource StringNotNullOrEmptyConverter}}" />
+
+                            <Label Text="{Binding Symptoms.Count, StringFormat='Symptoms: {0}'}"
+                                   FontSize="14"
+                                   TextColor="#FF5722"
+                                   IsVisible="{Binding Symptoms.Count}" />
+
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            
+            <CollectionView.EmptyView>
+                <Label Text="No entries found"
+                       FontSize="18"
+                       TextColor="#888888"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+            </CollectionView.EmptyView>
+        </CollectionView>
+
+        <!-- Action Buttons -->
+        <FlexLayout Grid.Row="2" 
+                    Wrap="Wrap"
+                    JustifyContent="SpaceBetween"
+                    Margin="0,15,0,0">
+            
+            <Button Text="🗑️ Delete Selected"
+                    Command="{Binding DeleteEntryCommand}"
+                    BackgroundColor="#F44336"
+                    TextColor="White"
+                    FontSize="16"
+                    WidthRequest="150"
+                    Margin="5" />
+            
+            <Button Text="📊 Export CSV"
+                    Command="{Binding ExportCsvCommand}"
+                    BackgroundColor="#2196F3"
+                    TextColor="White"
+                    FontSize="16"
+                    WidthRequest="150"
+                    Margin="5" />
+            
+            <Button Text="💾 Backup"
+                    Command="{Binding CreateBackupCommand}"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    FontSize="16"
+                    WidthRequest="150"
+                    Margin="5" />
+        </FlexLayout>
+
+    </Grid>
+</ContentPage>

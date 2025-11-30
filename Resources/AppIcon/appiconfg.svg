@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="456" height="456" viewBox="0 0 456 456" xmlns="http://www.w3.org/2000/svg">
+  <!-- Spoon icon foreground -->
+  <g transform="translate(228, 228)">
+    <!-- Handle -->
+    <rect x="-15" y="-150" width="30" height="180" rx="15" fill="#4CAF50"/>
+    
+    <!-- Bowl -->
+    <ellipse cx="0" cy="60" rx="60" ry="45" fill="#4CAF50"/>
+  </g>
+</svg>

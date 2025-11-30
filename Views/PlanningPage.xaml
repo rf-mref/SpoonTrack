@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:SpoonTrack.ViewModels"
+             x:Class="SpoonTrack.Views.PlanningPage"
+             Title="Plan Day"
+             BackgroundColor="#1E1E1E">
+
+    <ContentPage.BindingContext>
+        <vm:PlanningViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            
+            <!-- Spoons Budget -->
+            <Frame BackgroundColor="#2A2A2A" 
+                   BorderColor="#3A3A3A"
+                   CornerRadius="15"
+                   Padding="20">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Spoon Budget Today"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="#E0E0E0"
+                           HorizontalOptions="Center" />
+                    
+                    <Label Text="{Binding TodayEnergy, StringFormat='Total: {0} spoons'}"
+                           FontSize="18"
+                           TextColor="#4CAF50"
+                           HorizontalOptions="Center" />
+                    
+                    <Label Text="{Binding SpoonsRemaining, StringFormat='Remaining: {0} spoons'}"
+                           FontSize="24"
+                           FontAttributes="Bold"
+                           TextColor="#FFC107"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Warning se spoons negativos -->
+            <Frame BackgroundColor="#F44336" 
+                   IsVisible="{Binding SpoonsRemaining, Converter={StaticResource IsNegativeConverter}}"
+                   CornerRadius="10"
+                   Padding="15">
+                <Label Text="⚠️ ALERTA: Planeaste mais atividades do que spoons disponíveis! Risco de crash (PEM)."
+                       FontSize="16"
+                       TextColor="White"
+                       FontAttributes="Bold" />
+            </Frame>
+
+            <!-- Add Activity -->
+            <Label Text="Add Planned Activity"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="#E0E0E0" />
+
+            <FlexLayout Wrap="Wrap" 
+                        JustifyContent="Start">
+                <Button Text="🚿 Banho (-2)" 
+                        Command="{Binding AddActivityCommand}"
+                        CommandParameter="Tomar banho"
+                        BackgroundColor="#2196F3"
+                        TextColor="White"
+                        FontSize="14"
+                        Margin="5"
+                        Padding="10,5" />
+                
+                <Button Text="🍳 Cozinhar (-3)" 
+                        Command="{Binding AddActivityCommand}"
+                        CommandParameter="Cozinhar refeição"
+                        BackgroundColor="#2196F3"
+                        TextColor="White"
+                        FontSize="14"
+                        Margin="5"
+                        Padding="10,5" />
+                
+                <Button Text="💼 Trabalho 2h (-4)" 
+                        Command="{Binding AddActivityCommand}"
+                        CommandParameter="Trabalhar 2h"
+                        BackgroundColor="#2196F3"
+                        TextColor="White"
+                        FontSize="14"
+                        Margin="5"
+                        Padding="10,5" />
+                
+                <Button Text="🛒 Compras (-4)" 
+                        Command="{Binding AddActivityCommand}"
+                        CommandParameter="Ir às compras"
+                        BackgroundColor="#2196F3"
+                        TextColor="White"
+                        FontSize="14"
+                        Margin="5"
+                        Padding="10,5" />
+                
+                <Button Text="🏥 Médico (-3)" 
+                        Command="{Binding AddActivityCommand}"
+                        CommandParameter="Médico"
+                        BackgroundColor="#2196F3"
+                        TextColor="White"
+                        FontSize="14"
+                        Margin="5"
+                        Padding="10,5" />
+                
+                <Button Text="😴 Sesta (+2)" 
+                        Command="{Binding AddActivityCommand}"
+                        CommandParameter="Sesta"
+                        BackgroundColor="#4CAF50"
+                        TextColor="White"
+                        FontSize="14"
+                        Margin="5"
+                        Padding="10,5" />
+            </FlexLayout>
+
+            <!-- Planned Activities List -->
+            <Label Text="Today's Plan"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="#E0E0E0"
+                   Margin="0,20,0,0" />
+
+            <CollectionView ItemsSource="{Binding PlannedActivities}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="#2A2A2A" 
+                               BorderColor="#3A3A3A"
+                               CornerRadius="10"
+                               Padding="15"
+                               Margin="0,5">
+                            <Grid ColumnDefinitions="Auto,*,Auto,Auto">
+                                
+                                <!-- Checkbox -->
+                                <CheckBox Grid.Column="0"
+                                         IsChecked="{Binding IsCompleted}"
+                                         Color="#4CAF50"
+                                         VerticalOptions="Center">
+                                    <CheckBox.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:PlanningViewModel}}, Path=ToggleActivityCommand}"
+                                            CommandParameter="{Binding .}" />
+                                    </CheckBox.GestureRecognizers>
+                                </CheckBox>
+
+                                <!-- Activity Name -->
+                                <Label Grid.Column="1"
+                                       Text="{Binding ActivityName}"
+                                       FontSize="18"
+                                       TextColor="#E0E0E0"
+                                       VerticalOptions="Center"
+                                       Margin="10,0,0,0" />
+
+                                <!-- Spoon Cost -->
+                                <Label Grid.Column="2"
+                                       Text="{Binding SpoonCost, StringFormat='{0} 🥄'}"
+                                       FontSize="16"
+                                       TextColor="#FFC107"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="Center"
+                                       Margin="10,0,10,0" />
+
+                                <!-- Delete Button -->
+                                <Button Grid.Column="3"
+                                        Text="🗑️"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:PlanningViewModel}}, Path=DeleteActivityCommand}"
+                                        CommandParameter="{Binding .}"
+                                        BackgroundColor="#F44336"
+                                        TextColor="White"
+                                        FontSize="16"
+                                        Padding="10,5"
+                                        VerticalOptions="Center" />
+
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                
+                <CollectionView.EmptyView>
+                    <Label Text="No planned activities. Add some above!"
+                           FontSize="16"
+                           TextColor="#888888"
+                           HorizontalOptions="Center"
+                           Margin="0,20,0,0" />
+                </CollectionView.EmptyView>
+            </CollectionView>
+
+            <Label Text="💡 Dica: Deixa sempre 1-2 spoons de reserva para imprevistos"
+                   FontSize="14"
+                   TextColor="#888888"
+                   HorizontalOptions="Center"
+                   Margin="0,20,0,0" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

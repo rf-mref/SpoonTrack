@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  
+  <data name="AppName" xml:space="preserve">
+    <value>SpoonTrack</value>
+  </data>
+  
+  <data name="Energy" xml:space="preserve">
+    <value>Energia</value>
+  </data>
+  
+  <data name="Spoons" xml:space="preserve">
+    <value>Colheres</value>
+  </data>
+  
+  <data name="SleepQuality" xml:space="preserve">
+    <value>Qualidade do Sono</value>
+  </data>
+  
+  <data name="Notes" xml:space="preserve">
+    <value>Notas</value>
+  </data>
+  
+  <data name="Save" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  
+  <data name="History" xml:space="preserve">
+    <value>Histórico</value>
+  </data>
+  
+  <data name="Symptoms" xml:space="preserve">
+    <value>Sintomas</value>
+  </data>
+  
+  <data name="Activities" xml:space="preserve">
+    <value>Atividades</value>
+  </data>
+  
+  <data name="Triggers" xml:space="preserve">
+    <value>Triggers</value>
+  </data>
+  
+  <data name="Export" xml:space="preserve">
+    <value>Exportar</value>
+  </data>
+  
+  <data name="Backup" xml:space="preserve">
+    <value>Backup</value>
+  </data>
+  
+  <data name="Delete" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  
+  <data name="QuickLog" xml:space="preserve">
+    <value>Registo Rápido</value>
+  </data>
+  
+  <data name="TodaySpoons" xml:space="preserve">
+    <value>Colheres de Hoje</value>
+  </data>
+  
+  <data name="Fatigue" xml:space="preserve">
+    <value>Fadiga</value>
+  </data>
+  
+  <data name="Pain" xml:space="preserve">
+    <value>Dor</value>
+  </data>
+  
+  <data name="BrainFog" xml:space="preserve">
+    <value>Nevoeiro Mental</value>
+  </data>
+  
+  <data name="Dizziness" xml:space="preserve">
+    <value>Tonturas</value>
+  </data>
+  
+  <data name="Nausea" xml:space="preserve">
+    <value>Náusea</value>
+  </data>
+  
+  <data name="PEM" xml:space="preserve">
+    <value>Mal-estar Pós-Esforço</value>
+  </data>
+  
+  <data name="Headache" xml:space="preserve">
+    <value>Dor de Cabeça</value>
+  </data>
+  
+  <data name="AverageLast7Days" xml:space="preserve">
+    <value>Média Últimos 7 Dias</value>
+  </data>
+  
+  <data name="FilterBySymptom" xml:space="preserve">
+    <value>Filtrar por Sintoma</value>
+  </data>
+  
+  <data name="NoEntriesFound" xml:space="preserve">
+    <value>Nenhum registo encontrado</value>
+  </data>
+  
+</root>

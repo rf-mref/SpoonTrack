@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:SpoonTrack.ViewModels"
+             x:Class="SpoonTrack.Views.MainPage"
+             Title="SpoonTrack"
+             BackgroundColor="#1E1E1E">
+
+    <ContentPage.BindingContext>
+        <vm:MainViewModel x:Name="ViewModel" />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="25">
+            
+            <!-- Header -->
+            <Label Text="Today's Spoons"
+                   FontSize="32"
+                   FontAttributes="Bold"
+                   TextColor="#E0E0E0"
+                   HorizontalOptions="Center" />
+
+            <!-- Spoons Visual -->
+            <Frame BackgroundColor="#2A2A2A" 
+                   BorderColor="#3A3A3A"
+                   CornerRadius="15"
+                   Padding="20">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="{Binding CurrentEnergy, StringFormat='🥄 {0}/10 spoons'}"
+                           FontSize="28"
+                           FontAttributes="Bold"
+                           TextColor="#4CAF50"
+                           HorizontalOptions="Center" />
+                    
+                    <Slider Minimum="1" 
+                            Maximum="10" 
+                            Value="{Binding CurrentEnergy}"
+                            MinimumTrackColor="#4CAF50"
+                            MaximumTrackColor="#555555"
+                            ThumbColor="#4CAF50" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Sleep Quality -->
+            <Frame BackgroundColor="#2A2A2A" 
+                   BorderColor="#3A3A3A"
+                   CornerRadius="15"
+                   Padding="20">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="{Binding CurrentSleep, StringFormat='Sleep Quality: {0}/10'}"
+                           FontSize="20"
+                           TextColor="#E0E0E0"
+                           HorizontalOptions="Center" />
+                    
+                    <Slider Minimum="1" 
+                            Maximum="10" 
+                            Value="{Binding CurrentSleep}"
+                            MinimumTrackColor="#2196F3"
+                            MaximumTrackColor="#555555"
+                            ThumbColor="#2196F3" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Quick Symptoms -->
+            <Label Text="Quick Log Symptoms"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="#E0E0E0" />
+            
+            <FlexLayout Wrap="Wrap" 
+                        JustifyContent="Start"
+                        AlignItems="Start">
+                <Button Text="😴 Fatigue" 
+                        Command="{Binding QuickSymptomCommand}"
+                        CommandParameter="Fatigue"
+                        BackgroundColor="#FF5722"
+                        TextColor="White"
+                        FontSize="16"
+                        Margin="5"
+                        Padding="15,10" />
+                
+                <Button Text="🤕 Pain" 
+                        Command="{Binding QuickSymptomCommand}"
+                        CommandParameter="Pain"
+                        BackgroundColor="#FF5722"
+                        TextColor="White"
+                        FontSize="16"
+                        Margin="5"
+                        Padding="15,10" />
+                
+                <Button Text="🧠 Brain Fog" 
+                        Command="{Binding QuickSymptomCommand}"
+                        CommandParameter="BrainFog"
+                        BackgroundColor="#FF5722"
+                        TextColor="White"
+                        FontSize="16"
+                        Margin="5"
+                        Padding="15,10" />
+                
+                <Button Text="😵 Dizziness" 
+                        Command="{Binding QuickSymptomCommand}"
+                        CommandParameter="Dizziness"
+                        BackgroundColor="#FF5722"
+                        TextColor="White"
+                        FontSize="16"
+                        Margin="5"
+                        Padding="15,10" />
+            </FlexLayout>
+
+            <!-- Notes -->
+            <Label Text="Notes"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="#E0E0E0" />
+            
+            <Editor Text="{Binding Notes}"
+                    Placeholder="How are you feeling today?"
+                    PlaceholderColor="#888888"
+                    TextColor="#E0E0E0"
+                    BackgroundColor="#2A2A2A"
+                    HeightRequest="100"
+                    FontSize="18" />
+
+            <!-- Save Button -->
+            <Button Text="💾 Save Today's Entry"
+                    Command="{Binding SaveTodayCommand}"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    CornerRadius="10"
+                    Padding="20" />
+
+            <!-- 7-Day Average -->
+            <Frame BackgroundColor="#2A2A2A" 
+                   BorderColor="#3A3A3A"
+                   CornerRadius="15"
+                   Padding="20">
+                <Label Text="{Binding AverageEnergy7Days, StringFormat='7-Day Average: {0:F1} spoons'}"
+                       FontSize="18"
+                       TextColor="#FFC107"
+                       HorizontalOptions="Center" />
+            </Frame>
+
+            <!-- Today's Symptoms List -->
+            <Label Text="Today's Logged Symptoms"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="#E0E0E0"
+                   IsVisible="{Binding TodaySymptoms.Count}" />
+            
+            <CollectionView ItemsSource="{Binding TodaySymptoms}"
+                           IsVisible="{Binding TodaySymptoms.Count}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="#2A2A2A" 
+                               BorderColor="#3A3A3A"
+                               CornerRadius="10"
+                               Padding="15"
+                               Margin="0,5">
+                            <HorizontalStackLayout Spacing="10">
+                                <Label Text="{Binding SymptomType}"
+                                       FontSize="18"
+                                       TextColor="#E0E0E0"
+                                       VerticalOptions="Center" />
+                                <Label Text="{Binding Severity, StringFormat='({0}/10)'}"
+                                       FontSize="18"
+                                       TextColor="#FF5722"
+                                       VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

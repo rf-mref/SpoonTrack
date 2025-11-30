@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="SpoonTrack.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:SpoonTrack.Views"
+    Shell.FlyoutBehavior="Flyout"
+    Shell.FlyoutBackgroundColor="#1E1E1E"
+    Shell.TabBarBackgroundColor="#1E1E1E"
+    Shell.TabBarForegroundColor="#E0E0E0"
+    Shell.TabBarTitleColor="#E0E0E0"
+    Shell.TabBarUnselectedColor="#888888">
+
+    <!-- Flyout Header -->
+    <Shell.FlyoutHeader>
+        <Grid BackgroundColor="#2A2A2A" HeightRequest="150" Padding="20">
+            <VerticalStackLayout VerticalOptions="Center">
+                <Label Text="🥄 SpoonTrack"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       TextColor="#4CAF50" />
+                <Label Text="Energy Management"
+                       FontSize="16"
+                       TextColor="#E0E0E0" />
+            </VerticalStackLayout>
+        </Grid>
+    </Shell.FlyoutHeader>
+
+    <!-- Main Tabs (sempre visíveis) -->
+    <FlyoutItem Title="📊 Main" FlyoutDisplayOptions="AsMultipleItems">
+        <Tab Title="Today">
+            <ShellContent ContentTemplate="{DataTemplate views:MainPage}" Route="main" />
+        </Tab>
+        <Tab Title="Planning">
+            <ShellContent ContentTemplate="{DataTemplate views:PlanningPage}" Route="planning" />
+        </Tab>
+        <Tab Title="Charts">
+            <ShellContent ContentTemplate="{DataTemplate views:ChartsPage}" Route="charts" />
+        </Tab>
+        <Tab Title="History">
+            <ShellContent ContentTemplate="{DataTemplate views:HistoryPage}" Route="history" />
+        </Tab>
+    </FlyoutItem>
+
+    <!-- Settings -->
+    <FlyoutItem Title="⚙️ Settings">
+        <ShellContent ContentTemplate="{DataTemplate views:SettingsPage}" Route="settings" />
+    </FlyoutItem>
+
+    <!-- Help -->
+    <FlyoutItem Title="❓ Help">
+        <ShellContent ContentTemplate="{DataTemplate views:HelpPage}" Route="help" />
+    </FlyoutItem>
+
+</Shell>

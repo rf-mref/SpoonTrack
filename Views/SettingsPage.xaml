@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SpoonTrack.Views.SettingsPage"
+             Title="Settings"
+             BackgroundColor="#1E1E1E">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="25">
+
+            <Label Text="⚙️ Settings"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   TextColor="#E0E0E0" />
+
+            <!-- Default Spoons -->
+            <Frame BackgroundColor="#2A2A2A" 
+                   BorderColor="#3A3A3A"
+                   CornerRadius="15"
+                   Padding="20">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Default Spoons per Day"
+                           FontSize="18"
+                           TextColor="#E0E0E0" />
+
+                    <Label x:Name="SpoonsLabel"
+                           Text="5 spoons"
+                           FontSize="24"
+                           FontAttributes="Bold"
+                           TextColor="#4CAF50"
+                           HorizontalOptions="Center" />
+
+                    <Slider x:Name="DefaultSpoonsSlider"
+                            Minimum="1" 
+                            Maximum="10"
+                            Value="5"
+                            MinimumTrackColor="#4CAF50"
+                            MaximumTrackColor="#555555"
+                            ThumbColor="#4CAF50"
+                            ValueChanged="DefaultSpoonsSlider_ValueChanged" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Language -->
+            <Frame BackgroundColor="#2A2A2A" 
+                   BorderColor="#3A3A3A"
+                   CornerRadius="15"
+                   Padding="20">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Language / Idioma / Langue"
+                           FontSize="18"
+                           TextColor="#E0E0E0" />
+
+                    <Picker x:Name="LanguagePicker"
+                            Title="Select Language"
+                            TextColor="#E0E0E0"
+                            TitleColor="#888888"
+                            SelectedIndexChanged="LanguagePicker_SelectedIndexChanged">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Português 🇵🇹</x:String>
+                                <x:String>English 🇬🇧</x:String>
+                                <x:String>Français 🇫🇷</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Theme -->
+            <Frame BackgroundColor="#2A2A2A" 
+                   BorderColor="#3A3A3A"
+                   CornerRadius="15"
+                   Padding="20">
+                <HorizontalStackLayout Spacing="15">
+                    <Label Text="Dark Mode (recommended)"
+                           FontSize="18"
+                           TextColor="#E0E0E0"
+                           VerticalOptions="Center"
+                           HorizontalOptions="StartAndExpand" />
+
+                    <Switch x:Name="DarkModeSwitch"
+                            IsToggled="True"
+                            OnColor="#4CAF50"
+                            ThumbColor="White"
+                            Toggled="DarkModeSwitch_Toggled" />
+                </HorizontalStackLayout>
+            </Frame>
+
+            <!-- Clear Data -->
+            <Button Text="🗑️ Clear All Data"
+                    Clicked="ClearData_Clicked"
+                    BackgroundColor="#F44336"
+                    TextColor="White"
+                    FontSize="18"
+                    CornerRadius="10"
+                    Padding="20"
+                    Margin="0,20,0,0" />
+
+            <Label Text="⚠️ Warning: This will delete all your entries permanently!"
+                   FontSize="14"
+                   TextColor="#F44336"
+                   HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
